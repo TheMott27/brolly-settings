@@ -664,73 +664,7 @@ export default function Home() {
                 />
               </Section>
 
-              <Section title="WEATHER ICONS">
-                <div className="flex items-center justify-between py-3">
-                  <Label className="text-sm font-medium">Icon size</Label>
-                  <div className="flex gap-2">
-                    <Button
-                      variant={settings.iconSize === 0 ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setSettings({ ...settings, iconSize: 0 })}
-                    >
-                      S
-                    </Button>
-                    <Button
-                      variant={settings.iconSize === 1 ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setSettings({ ...settings, iconSize: 1 })}
-                    >
-                      M
-                    </Button>
-                    <Button
-                      variant={settings.iconSize === 2 ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => setSettings({ ...settings, iconSize: 2 })}
-                    >
-                      L
-                    </Button>
-                  </div>
-                </div>
-                <RowSep />
-                <SelectRow
-                  label="Icon colour mode"
-                  value={settings.iconColorMode}
-                  options={[
-                    { value: 0, label: "Single colour" },
-                    { value: 1, label: "Rainbow" },
-                  ]}
-                  onChange={(v) => setSettings({ ...settings, iconColorMode: v })}
-                />
-                <RowSep />
-                {settings.iconColorMode === 0 && (
-                  <>
-                    <ColorPickerRow
-                      label="Icon colour"
-                      description="Colour of weather icons"
-                      value={settings.iconColor}
-                      onChange={(v) => setSettings({ ...settings, iconColor: v })}
-                    />
-                  </>
-                )}
-              </Section>
-
-              <Section title="COMPLICATION">
-                <ColorPickerRow
-                  label="Date colour"
-                  description="Colour of date text"
-                  value={settings.dateColor}
-                  onChange={(v) => setSettings({ ...settings, dateColor: v })}
-                />
-                <RowSep />
-                <ColorPickerRow
-                  label="Temperature colour"
-                  description="Colour of temperature text"
-                  value={settings.tempColor}
-                  onChange={(v) => setSettings({ ...settings, tempColor: v })}
-                />
-              </Section>
-
-              {/* Colour Presets Section - Moved to bottom */}
+              {/* Colour Presets Section */}
               <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4 mb-4">
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-teal-400 mb-4">Colour Presets</h3>
                 <div className="overflow-x-auto pb-2 -mx-4 px-4">
@@ -773,6 +707,27 @@ export default function Home() {
                   ]}
                   onChange={(v) => setSettings({ ...settings, shakeMode: v })}
                 />
+                <RowSep />
+                <SelectRow
+                  label="Icon colour mode"
+                  value={settings.iconColorMode}
+                  options={[
+                    { value: 0, label: "Single colour" },
+                    { value: 1, label: "Rainbow" },
+                  ]}
+                  onChange={(v) => setSettings({ ...settings, iconColorMode: v })}
+                />
+                {settings.iconColorMode === 0 && (
+                  <>
+                    <RowSep />
+                    <ColorPickerRow
+                      label="Icon colour"
+                      description="Colour of weather icons"
+                      value={settings.iconColor}
+                      onChange={(v) => setSettings({ ...settings, iconColor: v })}
+                    />
+                  </>
+                )}
               </Section>
 
               <Section title="LOCATION & DATA">
@@ -837,18 +792,6 @@ export default function Home() {
                 )}
               </Section>
 
-              <Section title="UNITS">
-                <SelectRow
-                  label="Temperature unit"
-                  value={settings.tempUnit}
-                  options={[
-                    { value: 0, label: "Celsius (°C)" },
-                    { value: 1, label: "Fahrenheit (°F)" },
-                  ]}
-                  onChange={(v) => setSettings({ ...settings, tempUnit: v })}
-                />
-              </Section>
-
               <Section title="COMPLICATION">
                 <SelectRow
                   label="Show date"
@@ -861,6 +804,13 @@ export default function Home() {
                   onChange={(v) => setSettings({ ...settings, dateVisible: v })}
                 />
                 <RowSep />
+                <ColorPickerRow
+                  label="Date colour"
+                  description="Colour of date text"
+                  value={settings.dateColor}
+                  onChange={(v) => setSettings({ ...settings, dateColor: v })}
+                />
+                <RowSep />
                 <SelectRow
                   label="Show temperature"
                   value={settings.tempVisible}
@@ -870,6 +820,23 @@ export default function Home() {
                     { value: 2, label: "On shake" },
                   ]}
                   onChange={(v) => setSettings({ ...settings, tempVisible: v })}
+                />
+                <RowSep />
+                <ColorPickerRow
+                  label="Temperature colour"
+                  description="Colour of temperature text"
+                  value={settings.tempColor}
+                  onChange={(v) => setSettings({ ...settings, tempColor: v })}
+                />
+                <RowSep />
+                <SelectRow
+                  label="Temperature unit"
+                  value={settings.tempUnit}
+                  options={[
+                    { value: 0, label: "Celsius (°C)" },
+                    { value: 1, label: "Fahrenheit (°F)" },
+                  ]}
+                  onChange={(v) => setSettings({ ...settings, tempUnit: v })}
                 />
               </Section>
             </>
